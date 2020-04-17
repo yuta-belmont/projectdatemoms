@@ -1,5 +1,11 @@
 #you need to get selenium and chromedriver to run this
-#read readme i tried to explain some stuff
+#tips:
+#Logging in, there may be an issue depending on if chrome wants to display google or facebook login button-
+# - train chrome to whichever one you're using to login by simply using it manually atleast once.
+#Within the login function is where you input your usr and pass that logs into Tinder.
+#Within the login function you can comment out the facebook login and comment in the google login.
+
+
 #see the bottom for the functions
 
 from selenium import webdriver
@@ -27,13 +33,12 @@ class TinderBot():
         # switch to login popup
         base_window = self.driver.window_handles[0]
         self.driver.switch_to.window(self.driver.window_handles[1])
-
-    
+        
+        #PASS AND USER HREE. replace YOUR USRNM/PASS:
         email_in = self.driver.find_element_by_xpath('//*[@id="email"]')
-        email_in.send_keys('YOUR USRNM')
-
+        email_in.send_keys('YOUR USRNM') #here
         pw_in = self.driver.find_element_by_xpath('//*[@id="pass"]')
-        pw_in.send_keys('YOUR PASS')
+        pw_in.send_keys('YOUR PASS') #here
 
 
         login_btn = self.driver.find_element_by_xpath('//*[@id="u_0_0"]')
@@ -55,7 +60,7 @@ class TinderBot():
         sleep(2)
 
         """
-        #declines the login set location prompt
+        #declines the login set location prompt = faster login:
         popup_setlocation = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/button')
         popup_setlocation.click()
         """
@@ -162,11 +167,12 @@ bot = TinderBot()
 bot.login('New York City')
 bot.swipe_and_message()
 
-#SOME FUNCTIONS:
+"""
+SOME FUNCTIONS
 
-#bot.login('location')
-#bot.message()
-#bot.auto_swipe()
-#bot.random_swipe()
-#bot.swipe_and_message()
-
+bot.login('location')
+bot.message()
+bot.auto_swipe()
+bot.random_swipe()
+bot.swipe_and_message()
+"""
